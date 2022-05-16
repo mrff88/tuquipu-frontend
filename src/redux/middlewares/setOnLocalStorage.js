@@ -1,6 +1,12 @@
 const setOnLocalStorage = (store, action) => {
   switch (action.type) {
-    case 'users/setToken':
+    case 'users/logOut':
+      localStorage.setItem(
+        'infoUser',
+        JSON.stringify({ token: store.getState().users.token })
+      );
+      break;
+    case 'users/login/fulfilled':
       localStorage.setItem(
         'infoUser',
         JSON.stringify({ token: store.getState().users.token })
