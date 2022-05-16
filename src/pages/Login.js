@@ -1,16 +1,24 @@
 import { Link as RRLink } from 'react-router-dom';
+import { Formik, Form } from 'formik';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
-import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
+import TextField from '../components/formComponents/TextField';
+import Button from '../components/formComponents/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginAsync, selectIsLogin } from '../redux/features/usersSlice';
+import { FORM_VALIDATION_SCHEMAS, INITIAL_FORM_STATES } from '../constants';
 
 const Login = () => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('submit');
+  const { INITIAL_LOGIN_FORM_STATE } = INITIAL_FORM_STATES;
+  const { LOGIN_FORM_VALIDATION } = FORM_VALIDATION_SCHEMAS;
+  const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsLogin);
+
+  const handleSubmit = (values) => {
+    dispatch(loginAsync(values));
   };
 
   return (
@@ -55,9 +63,6 @@ const Login = () => {
           </Typography>
         </Box>
         <Box
-          component="form"
-          onSubmit={handleSubmit}
-          noValidate
           sx={{
             mt: 1,
             display: 'flex',
@@ -66,33 +71,31 @@ const Login = () => {
             flex: 2,
           }}
         >
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email"
-            name="email"
-            autoComplete="email"
-            autoFocus
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Contraseña"
-            type="password"
-            id="password"
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+          <Formik
+            initialValues={{ ...INITIAL_LOGIN_FORM_STATE }}
+            validationSchema={LOGIN_FORM_VALIDATION}
+            onSubmit={handleSubmit}
           >
-            Iniciar Sesión
-          </Button>
+            <Form>
+              <TextField
+                margin="normal"
+                label="Email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                autoFocus
+              />
+              <TextField
+                margin="normal"
+                label="Contraseña"
+                name="password"
+                type="password"
+              />
+              <Button isLoading={isLoading} sx={{ mt: 3, mb: 2 }}>
+                Iniciar Sesión
+              </Button>
+            </Form>
+          </Formik>
         </Box>
         <Grid
           container

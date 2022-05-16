@@ -1,16 +1,30 @@
 import { Link as RRLink } from 'react-router-dom';
+import { Formik, Form } from 'formik';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
+import TextField from '../components/formComponents/TextField';
+import Button from '../components/formComponents/Button';
 import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  createUserAsync,
+  selectCreatedUser,
+  selectIsCreating,
+} from '../redux/features/usersSlice';
+import { FORM_VALIDATION_SCHEMAS, INITIAL_FORM_STATES } from '../constants';
+import AutoResetForm from '../components/formComponents/AutoResetForm';
 
 const Register = () => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('submit');
+  const { INITIAL_USER_REGISTER_FORM_STATE } = INITIAL_FORM_STATES;
+  const { USER_REGISGER_FORM_VALIDATION } = FORM_VALIDATION_SCHEMAS;
+
+  const dispatch = useDispatch();
+  const createdUser = useSelector(selectCreatedUser);
+  const isLoading = useSelector(selectIsCreating);
+  const handleSubmit = ({ passwordConf, ...user }) => {
+    dispatch(createUserAsync(user));
   };
 
   return (
@@ -49,98 +63,83 @@ const Register = () => {
             Regístrate
           </Typography>
         </Box>
-        <Box
-          component="form"
+        <Formik
+          initialValues={{ ...INITIAL_USER_REGISTER_FORM_STATE }}
+          validationSchema={USER_REGISGER_FORM_VALIDATION}
           onSubmit={handleSubmit}
-          noValidate
-          sx={{
-            mt: 1,
-            display: 'flex',
-            flexDirection: 'column',
-            width: { xs: '100%', sm: '80%', lg: '70%' },
-            flex: 2,
-          }}
         >
-          <Grid
-            container
-            spacing={{
-              xs: 0,
-              sm: 3,
-            }}
-          >
-            <Grid item xs={12} sm={6}>
+          <Form>
+            <Box
+              sx={{
+                mt: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                flex: 2,
+              }}
+            >
+              <Grid
+                container
+                spacing={{
+                  xs: 0,
+                  sm: 3,
+                }}
+              >
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    margin="normal"
+                    label="Nombres"
+                    name="name"
+                    autoFocus
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    margin="normal"
+                    label="Apellidos"
+                    name="lastname"
+                  />
+                </Grid>
+              </Grid>
               <TextField
                 margin="normal"
-                required
-                fullWidth
-                id="names"
-                label="Nombres"
-                name="names"
-                autoFocus
+                label="Email"
+                name="email"
+                autoComplete="email"
+                type="email"
               />
-            </Grid>
-            <Grid item xs={12} sm={6}>
               <TextField
                 margin="normal"
-                required
-                fullWidth
-                id="lastNames"
-                label="Apellidos"
-                name="lastNames"
+                label="Número de telefono"
+                name="phone"
+                type="tel"
               />
-            </Grid>
-          </Grid>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email"
-            name="email"
-            autoComplete="email"
-            type="email"
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="phone"
-            label="Número de telefono"
-            name="phone"
-            type="tel"
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="password"
-            label="Contraseña"
-            name="password"
-            type="password"
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="password-conf"
-            label="Confirmar contraseña"
-            name="password-conf"
-            type="password"
-          />
-          <Button
-            type="submit"
-            variant="contained"
-            fullWidth
-            sx={{
-              mt: 3,
-              mb: 2,
-              alignSelf: 'center',
-              maxWidth: '80%',
-            }}
-          >
-            Regístrate
-          </Button>
-        </Box>
+              <TextField
+                margin="normal"
+                label="Contraseña"
+                name="password"
+                type="password"
+              />
+              <TextField
+                margin="normal"
+                label="Confirmar contraseña"
+                name="passwordConf"
+                type="password"
+              />
+              <Button
+                isLoading={isLoading}
+                sx={{
+                  mt: 3,
+                  mb: 2,
+                  alignSelf: 'center',
+                  maxWidth: '80%',
+                }}
+              >
+                Regístrate
+              </Button>
+            </Box>
+            <AutoResetForm flag={createdUser} />
+          </Form>
+        </Formik>
         <Grid
           container
           sx={{
