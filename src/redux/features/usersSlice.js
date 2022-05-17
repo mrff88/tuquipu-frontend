@@ -10,8 +10,49 @@ export const createUserAsync = createAsyncThunk(
     try {
       const result = await userCtrl.createUser(user);
       dispatch(
-        createNotification({ message: 'Se registro el usuario con exito' })
+        createNotification({ message: 'Se registro al usuario con exito' })
       );
+      return result.data;
+    } catch (error) {
+      dispatch(
+        createNotification({
+          message: error.response.data.message,
+          severity: 'error',
+        })
+      );
+      return rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const getAllUsersAsync = createAsyncThunk(
+  'users/all',
+  async (_, { dispatch, rejectWithValue }) => {
+    try {
+      const result = await userCtrl.getAllUsers();
+      return result.data;
+    } catch (error) {
+      dispatch(
+        createNotification({
+          message: error.response.data.message,
+          severity: 'error',
+        })
+      );
+      return rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const updateUserStateAsync = createAsyncThunk(
+  'users/update',
+  async (user, { dispatch, rejectWithValue }) => {
+    try {
+      const result = await userCtrl.updateUserState(user);
+      dispatch(
+        createNotification({ message: 'Se actualizo el estado con exito' })
+      );
+      dispatch(getAllUsersAsync());
+      dispatch(hideModalUserEdit());
       return result.data;
     } catch (error) {
       dispatch(
@@ -33,7 +74,6 @@ export const loginAsync = createAsyncThunk(
       dispatch(createNotification({ message: 'Inicio de sesión exitoso' }));
       return result.data;
     } catch (error) {
-      // console.log(error);
       dispatch(
         createNotification({
           message: error.response.data.message,
@@ -51,6 +91,13 @@ export const usersSlice = createSlice({
   reducers: {
     logOut: (state) => {
       state.token = null;
+    },
+    userToEdit: (state, { payload: userToEdit }) => {
+      state.userToEdit = userToEdit;
+      state.showModalUserEdit = true;
+    },
+    hideModalUserEdit: (state) => {
+      state.showModalUserEdit = false;
     },
   },
   extraReducers: (builder) => {
@@ -71,6 +118,41 @@ export const usersSlice = createSlice({
           state.createUserErrorMessage = createUserErrorMessage;
         }
       )
+      .addCase(getAllUsersAsync.pending, (state) => {
+        state.isLoadingAll = true;
+        state.users = null;
+        state.loadingAllErrorMessage = null;
+      })
+      .addCase(getAllUsersAsync.fulfilled, (state, { payload: allUsers }) => {
+        state.isLoadingAll = false;
+        state.users = allUsers;
+      })
+      .addCase(
+        getAllUsersAsync.rejected,
+        (state, { payload: loadingAllErrorMessage }) => {
+          state.isLoadingAll = false;
+          state.loadingAllErrorMessage = loadingAllErrorMessage;
+        }
+      )
+      .addCase(updateUserStateAsync.pending, (state) => {
+        state.isUpdatingUserState = true;
+        state.updateResult = null;
+        state.updatingErrorMessage = null;
+      })
+      .addCase(
+        updateUserStateAsync.fulfilled,
+        (state, { payload: updateResult }) => {
+          state.isUpdatingUserState = false;
+          state.updateResult = updateResult;
+        }
+      )
+      .addCase(
+        updateUserStateAsync.rejected,
+        (state, { payload: updatingErrorMessage }) => {
+          state.isUpdatingUserState = false;
+          state.updatingErrorMessage = updatingErrorMessage;
+        }
+      )
       .addCase(loginAsync.pending, (state) => {
         state.isLogin = true;
         state.loginErrorMessage = null;
@@ -87,9 +169,15 @@ export const usersSlice = createSlice({
 });
 
 // actions export
-export const { logOut } = usersSlice.actions;
+export const { logOut, userToEdit, hideModalUserEdit } = usersSlice.actions;
 
 // selectors
+export const selectUserToEdit = (state) => state.users.userToEdit;
+export const selectShowModalUserEdit = (state) => state.users.showModalUserEdit;
+export const selectUsers = (state) => state.users.users;
+export const selectIsLoadingAll = (state) => state.users.isLoadingAll;
+export const selectIsUpdatingUserState = (state) =>
+  state.users.isUpdatingUserState;
 export const selectToken = (state) => state.users.token;
 export const selectIsCreating = (state) => state.users.isCreating;
 export const selectCreatedUser = (state) => state.users.created;
