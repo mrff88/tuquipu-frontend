@@ -61,7 +61,7 @@ const WithAuthLayout = () => {
     return <Navigate to="/login" replace />;
   }
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh' }}>
+    <Box sx={{ display: '-webkit-box', minHeight: '100vh' }}>
       <AppBar position="fixed" open={open}>
         <Toolbar>
           <IconButton
