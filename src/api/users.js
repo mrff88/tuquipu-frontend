@@ -26,9 +26,47 @@ const createUser = async (user) => {
   }
 };
 
+const getAllUsers = async () => {
+  const token = JSON.parse(localStorage.getItem('infoUser')).token;
+  const url = `${API_BASE_URL}${USERS.ALL}`;
+
+  try {
+    const response = await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const updateUserState = async ({ _id, state }) => {
+  const token = JSON.parse(localStorage.getItem('infoUser')).token;
+  const url = `${API_BASE_URL}${USERS.UPDATE}/${_id}`;
+
+  try {
+    const response = await axios.put(
+      url,
+      {
+        state: state === 'inactivo' ? 'activo' : 'inactivo',
+      },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 const usersCtrl = {
   login,
   createUser,
+  getAllUsers,
+  updateUserState,
 };
 
 export default usersCtrl;
