@@ -92,6 +92,13 @@ export const usersSlice = createSlice({
     logOut: (state) => {
       state.token = null;
     },
+    userInfo: (state, { payload: user }) => {
+      state.userInfo = user;
+      state.showModalUserInfo = true;
+    },
+    hideModalUserInfor: (state) => {
+      state.showModalUserInfo = false;
+    },
     userToEdit: (state, { payload: userToEdit }) => {
       state.userToEdit = userToEdit;
       state.showModalUserEdit = true;
@@ -169,9 +176,17 @@ export const usersSlice = createSlice({
 });
 
 // actions export
-export const { logOut, userToEdit, hideModalUserEdit } = usersSlice.actions;
+export const {
+  logOut,
+  userToEdit,
+  hideModalUserEdit,
+  userInfo,
+  hideModalUserInfor,
+} = usersSlice.actions;
 
 // selectors
+export const selectUserInfo = (state) => state.users.userInfo;
+export const selectShowModalUserInfo = (state) => state.users.showModalUserInfo;
 export const selectUserToEdit = (state) => state.users.userToEdit;
 export const selectShowModalUserEdit = (state) => state.users.showModalUserEdit;
 export const selectUsers = (state) => state.users.users;
