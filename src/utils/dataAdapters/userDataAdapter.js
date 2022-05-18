@@ -1,7 +1,7 @@
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
-import InfoIcon from '@mui/icons-material/Info';
-import { ShowEditUserModal } from '../../components/tableComponents';
+import {
+  ShowEditUserModal,
+  ShowUserInfoModal,
+} from '../../components/tableComponents';
 
 const userDataAdapter = (usersData, id) => {
   const adaptedData = usersData
@@ -11,11 +11,7 @@ const userDataAdapter = (usersData, id) => {
       item.lastname,
       item.state,
       <>
-        <Tooltip title="Más información">
-          <IconButton>
-            <InfoIcon color="info" />
-          </IconButton>
-        </Tooltip>
+        <ShowUserInfoModal userData={item} />
         <ShowEditUserModal userData={item} />
       </>,
     ]);

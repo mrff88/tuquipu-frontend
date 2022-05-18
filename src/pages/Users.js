@@ -4,23 +4,26 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   getAllUsersAsync,
   hideModalUserEdit,
+  hideModalUserInfor,
   selectShowModalUserEdit,
+  selectShowModalUserInfo,
   selectToken,
   selectUsers,
 } from '../redux/features/usersSlice';
 import { useEffect } from 'react';
 import MUI_DATA_TABLE from '../constants/muiDataTable';
 import { parseJWT } from '../utils';
-import { UserStateChange } from '../components/modalDialogs';
+import { UserInfo, UserStateChange } from '../components/modalDialogs';
 import { useTheme } from '@mui/material/styles';
 import userDataAdapter from '../utils/dataAdapters/userDataAdapter';
 
 const Users = () => {
   const token = useSelector(selectToken);
   const allUsers = useSelector(selectUsers) || null;
+  const showModalUserInfo = useSelector(selectShowModalUserInfo) || false;
   const showModalUserEdit = useSelector(selectShowModalUserEdit) || false;
   const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   const { _id } = parseJWT(token) || '';
   const dispatch = useDispatch();
@@ -37,6 +40,10 @@ const Users = () => {
     dispatch(hideModalUserEdit());
   };
 
+  const handleHideModalUserInfo = () => {
+    dispatch(hideModalUserInfor());
+  };
+
   return (
     <>
       <MUIDataTable
@@ -44,6 +51,11 @@ const Users = () => {
         data={adaptedData}
         columns={columns}
         options={options}
+      />
+      <UserInfo
+        fullScreen={fullScreen}
+        open={showModalUserInfo}
+        handleClose={handleHideModalUserInfo}
       />
       <UserStateChange
         fullScreen={fullScreen}
