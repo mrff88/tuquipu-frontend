@@ -10,9 +10,11 @@ import {
   Clients,
   Devices,
   EditClient,
+  EditDevice,
   Login,
   Register,
   RegisterClient,
+  RegisterDevice,
   Users,
 } from '../pages';
 
@@ -37,6 +39,16 @@ function App() {
             element={<EditClient />}
           />
           <Route exact path="/dispositivos/:clientId" element={<Devices />} />
+          <Route
+            exact
+            path="/dispositivos/registrar/:clientId"
+            element={<RegisterDevice />}
+          />
+          <Route
+            exact
+            path="/dispositivos/editar/:deviceId"
+            element={<EditDevice />}
+          />
           <Route path="/not-found" element={<h1>404 Not Found</h1>} />
           <Route path="*" element={<Navigate to="/not-found" replace />} />
         </Route>

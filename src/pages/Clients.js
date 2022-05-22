@@ -8,7 +8,7 @@ import {
   getAllClientsAsync,
   hideModalClientInfor,
   selectClients,
-  selectShowModalUserInfo,
+  selectShowModalClientInfo,
 } from '../redux/features/clientsSlice';
 import MUI_DATA_TABLE from '../constants/muiDataTable';
 import { RedirectIconButton } from '../components/tableComponents';
@@ -18,7 +18,7 @@ import { useTheme } from '@mui/material/styles';
 
 const Clients = () => {
   const allClients = useSelector(selectClients) || null;
-  const showModalUserInfo = useSelector(selectShowModalUserInfo) || false;
+  const showModalUserInfo = useSelector(selectShowModalClientInfo) || false;
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
