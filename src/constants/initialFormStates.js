@@ -19,13 +19,14 @@ const INITIAL_FORM_STATES = {
     dni: '',
     address: '',
   },
-  INITIAL_CLIENT_EDIT_FORM_STATE: {
-    name: '',
-    lastname: '',
-    email: '',
-    phone: '',
-    dni: '',
-    address: '',
+  INITIAL_DEVICE_REGISTER_FORM_STATE: {
+    deviceType: '',
+    brand: '',
+    model: '',
+    serialNumber: '',
+    yearMade: '',
+    imgUrl: '',
+    clientId: '',
   },
 };
 

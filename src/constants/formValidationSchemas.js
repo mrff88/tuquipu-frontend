@@ -5,6 +5,9 @@ const phoneRegEx =
 const passwordRegEx =
   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 const dniRegEx = /^\d{8}(?:[-\s]\d{4})?$/;
+const modelRegEx = /^[a-zA-Z0-9-\s]+$/;
+const serialNumberReqEx = /^[a-zA-Z0-9-\s]+$/;
+const yearRegEx = /^\d{4}$/;
 
 const FORM_VALIDATION_SCHEMAS = {
   LOGIN_FORM_VALIDATION: Yup.object().shape({
@@ -54,6 +57,38 @@ const FORM_VALIDATION_SCHEMAS = {
       .matches(phoneRegEx, 'Ingrese un número de teléfono válido')
       .required('Ingrese un número de teléfono'),
     address: Yup.string(),
+  }),
+  DEVICE_REGISTER_FORM_VALIDATION: Yup.object().shape({
+    deviceType: Yup.string()
+      .oneOf(['PC', 'Laptop', 'All-In-One'])
+      .required('Seleccione un tipo para el dispositivo'),
+    brand: Yup.string().required('Ingrese la marca del dispositivo'),
+    model: Yup.string()
+      .matches(modelRegEx, 'Ingrese un modelo válido')
+      .required('Ingrese el modelo del dispositivo'),
+    serialNumber: Yup.string()
+      .matches(serialNumberReqEx, 'Ingrese un número de serie válido')
+      .required('Ingrese el número de serial'),
+    yearMade: Yup.string().matches(yearRegEx, 'Ingrese un año válido'),
+    imgUrl: Yup.string()
+      .url('Ingrese un url válido')
+      .required('Debe agregar una foto del dispositivo'),
+  }),
+  DEVICE_EDIT_FORM_VALIDATION: Yup.object().shape({
+    deviceType: Yup.string()
+      .oneOf(['PC', 'Laptop', 'All-In-One'])
+      .required('Seleccione un tipo para el dispositivo'),
+    brand: Yup.string().required('Ingrese la marca del dispositivo'),
+    model: Yup.string()
+      .matches(modelRegEx, 'Ingrese un modelo válido')
+      .required('Ingrese el modelo del dispositivo'),
+    serialNumber: Yup.string()
+      .matches(serialNumberReqEx, 'Ingrese un número de serie válido')
+      .required('Ingrese el número de serial'),
+    yearMade: Yup.string().matches(yearRegEx, 'Ingrese un año válido'),
+    imgUrl: Yup.string()
+      .url('Ingrese un url válido')
+      .required('Debe agregar una foto del dispositivo'),
   }),
 };
 

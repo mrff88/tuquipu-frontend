@@ -92,6 +92,39 @@ const MUI_DATA_TABLE = {
       },
     },
   ],
+  DEVICES_COLUMNS: [
+    {
+      name: 'Tipo',
+      options: {
+        sort: false,
+        setCellHeaderProps: () => ({ align: 'center' }),
+      },
+    },
+    {
+      name: 'Modelo',
+      options: {
+        sort: false,
+        setCellHeaderProps: () => ({ align: 'center' }),
+      },
+    },
+    {
+      name: '# Serial',
+      options: {
+        sort: false,
+        setCellHeaderProps: () => ({ align: 'center' }),
+        setCellProps: () => ({ align: 'center' }),
+      },
+    },
+    {
+      name: 'Acciones',
+      options: {
+        sort: false,
+        searchable: false,
+        setCellHeaderProps: () => ({ align: 'center' }),
+        setCellProps: () => ({ align: 'center' }),
+      },
+    },
+  ],
 };
 
 export default MUI_DATA_TABLE;

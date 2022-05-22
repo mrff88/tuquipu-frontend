@@ -12,6 +12,12 @@ const ENDPOINTS = {
     READ: '/api/clients/',
     UPDATE: '/api/clients/',
   },
+  DEVICES: {
+    CREATE: '/api/devices/',
+    ALL: '/api/devices/',
+    READ: '/api/devices/device/',
+    UPDATE: '/api/devices/device/',
+  },
 };
 
 export default ENDPOINTS;
