@@ -125,6 +125,40 @@ const MUI_DATA_TABLE = {
       },
     },
   ],
+  SERVICES_COLUMNS: [
+    {
+      name: 'Tipo',
+      options: {
+        sort: false,
+        setCellHeaderProps: () => ({ align: 'center' }),
+      },
+    },
+    {
+      name: 'Estado',
+      options: {
+        sort: false,
+        setCellHeaderProps: () => ({ align: 'center' }),
+        setCellProps: () => ({ align: 'center' }),
+      },
+    },
+    {
+      name: 'Fecha',
+      options: {
+        sort: false,
+        setCellHeaderProps: () => ({ align: 'center' }),
+        setCellProps: () => ({ align: 'center' }),
+      },
+    },
+    {
+      name: 'Acciones',
+      options: {
+        sort: false,
+        searchable: false,
+        setCellHeaderProps: () => ({ align: 'center' }),
+        setCellProps: () => ({ align: 'center' }),
+      },
+    },
+  ],
 };
 
 export default MUI_DATA_TABLE;

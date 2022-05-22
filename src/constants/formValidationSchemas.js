@@ -90,6 +90,19 @@ const FORM_VALIDATION_SCHEMAS = {
       .url('Ingrese un url válido')
       .required('Debe agregar una foto del dispositivo'),
   }),
+  SERVICE_REGISTER_FORM_VALIDATION: Yup.object().shape({
+    serviceType: Yup.string()
+      .oneOf([
+        'Diagnóstico',
+        'Formateo',
+        'Limpieza',
+        'Instalación',
+        'Reparación',
+        'Ensamblaje',
+        'Repotenciación',
+      ])
+      .required('Seleccione un tipo de servicio'),
+  }),
 };
 
 export default FORM_VALIDATION_SCHEMAS;

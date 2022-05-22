@@ -28,6 +28,9 @@ const INITIAL_FORM_STATES = {
     imgUrl: '',
     clientId: '',
   },
+  INITIAL_SERVICE_REGISTER_FORM_STATE: {
+    serviceType: '',
+  },
 };
 
 export default INITIAL_FORM_STATES;
