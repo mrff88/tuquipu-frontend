@@ -1,7 +1,7 @@
-import {
-  ShowEditUserModal,
-  ShowUserInfoModal,
-} from '../../components/tableComponents';
+import EditIcon from '@mui/icons-material/Edit';
+import InfoIcon from '@mui/icons-material/Info';
+import { ShowModalIconButton } from '../../components/tableComponents';
+import { userToEdit, userInfo } from '../../redux/features/usersSlice';
 
 const userDataAdapter = (usersData, id) => {
   const adaptedData = usersData
@@ -11,8 +11,20 @@ const userDataAdapter = (usersData, id) => {
       item.lastname,
       item.state,
       <>
-        <ShowUserInfoModal userData={item} />
-        <ShowEditUserModal userData={item} />
+        <ShowModalIconButton
+          data={item}
+          reduxFunc={userInfo}
+          title={'Más información'}
+        >
+          <InfoIcon color="info" />
+        </ShowModalIconButton>
+        <ShowModalIconButton
+          data={item}
+          reduxFunc={userToEdit}
+          title={'Cambiar estado'}
+        >
+          <EditIcon color="warning" />
+        </ShowModalIconButton>
       </>,
     ]);
   return adaptedData;

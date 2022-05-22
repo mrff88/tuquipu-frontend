@@ -1,4 +1,4 @@
-import ShowEditUserModal from './buttons/ShowEditUserModal';
-import ShowUserInfoModal from './buttons/ShowUserInfoModal';
+import ShowModalIconButton from './buttons/ShowModalIconButton';
+import RedirectIconButton from './buttons/RedirectIconButton';
 
-export { ShowEditUserModal, ShowUserInfoModal };
+export { ShowModalIconButton, RedirectIconButton };
