@@ -4,6 +4,7 @@ const phoneRegEx =
   /^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,3})|(\(?\d{2,3}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$/;
 const passwordRegEx =
   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+const dniRegEx = /^\d{8}(?:[-\s]\d{4})?$/;
 
 const FORM_VALIDATION_SCHEMAS = {
   LOGIN_FORM_VALIDATION: Yup.object().shape({
@@ -12,7 +13,7 @@ const FORM_VALIDATION_SCHEMAS = {
       .required('Debe ingresar un email'),
     password: Yup.string().required('Debe ingresar su contraseña'),
   }),
-  USER_REGISGER_FORM_VALIDATION: Yup.object().shape({
+  USER_REGISTER_FORM_VALIDATION: Yup.object().shape({
     name: Yup.string().required('Ingrese un nombre'),
     lastname: Yup.string().required('Ingrese un apellido'),
     email: Yup.string()
@@ -30,6 +31,29 @@ const FORM_VALIDATION_SCHEMAS = {
     passwordConf: Yup.string()
       .oneOf([Yup.ref('password')], 'Debe ser igual a su contraseña')
       .required('Ingrese la confirmación de contraseña'),
+  }),
+  CLIENT_REGISTER_FORM_VALIDATION: Yup.object().shape({
+    name: Yup.string().required('Ingrese un nombre'),
+    lastname: Yup.string().required('Ingrese un apellido'),
+    email: Yup.string()
+      .email('Ingrese un email válido')
+      .required('Debe ingresar un email'),
+    phone: Yup.string()
+      .matches(phoneRegEx, 'Ingrese un número de teléfono válido')
+      .required('Ingrese un número de teléfono'),
+    dni: Yup.string()
+      .matches(dniRegEx, 'Ingrese un número de DNI válido')
+      .required('Ingrese el DNI del cliente'),
+    address: Yup.string(),
+  }),
+  CLIENT_EDIT_FORM_VALIDATION: Yup.object().shape({
+    email: Yup.string()
+      .email('Ingrese un email válido')
+      .required('Debe ingresar un email'),
+    phone: Yup.string()
+      .matches(phoneRegEx, 'Ingrese un número de teléfono válido')
+      .required('Ingrese un número de teléfono'),
+    address: Yup.string(),
   }),
 };
 

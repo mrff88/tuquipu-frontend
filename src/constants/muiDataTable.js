@@ -59,6 +59,39 @@ const MUI_DATA_TABLE = {
       },
     },
   ],
+  CLIENT_COLUMNS: [
+    {
+      name: 'Nombres',
+      options: {
+        sort: false,
+        setCellHeaderProps: () => ({ align: 'center' }),
+      },
+    },
+    {
+      name: 'Apellidos',
+      options: {
+        sort: false,
+        setCellHeaderProps: () => ({ align: 'center' }),
+      },
+    },
+    {
+      name: 'DNI',
+      options: {
+        sort: false,
+        setCellHeaderProps: () => ({ align: 'center' }),
+        setCellProps: () => ({ align: 'center' }),
+      },
+    },
+    {
+      name: 'Acciones',
+      options: {
+        sort: false,
+        searchable: false,
+        setCellHeaderProps: () => ({ align: 'center' }),
+        setCellProps: () => ({ align: 'center' }),
+      },
+    },
+  ],
 };
 
 export default MUI_DATA_TABLE;
