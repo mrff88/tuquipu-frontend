@@ -1,4 +1,5 @@
 import UserStateChange from './UserStateChange';
 import UserInfo from './UserInfo';
+import ClientInfo from './ClientInfo';
 
-export { UserStateChange, UserInfo };
+export { UserStateChange, UserInfo, ClientInfo };
