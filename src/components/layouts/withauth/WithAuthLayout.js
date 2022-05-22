@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link as RRLink } from 'react-router-dom';
+import { Link as RRLink, useLocation } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -27,9 +27,10 @@ import Main from '../../layoutComponents/Main';
 import DrawerHeader from '../../layoutComponents/DrawerHeader';
 import AppBar from '../../layoutComponents/AppBar';
 import Drawer from '../../layoutComponents/Drawer';
-import { parseJWT } from '../../../utils';
+import { parseJWT, setAppBarTitle } from '../../../utils';
 
 const WithAuthLayout = () => {
+  const route = useLocation();
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const { userType } = parseJWT(token) || '';
@@ -74,7 +75,7 @@ const WithAuthLayout = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-            FIND WAY TO DISPLAY
+            {setAppBarTitle(route.pathname)}
           </Typography>
           <IconButton
             color="inherit"
