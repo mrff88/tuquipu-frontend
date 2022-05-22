@@ -177,13 +177,14 @@ export const { clientInfo, hideModalClientInfor } = clientsSlice.actions;
 
 // selectors
 export const selectClientInfo = (state) => state.clients.clientInfo;
-export const selectShowModalUserInfo = (state) =>
+export const selectShowModalClientInfo = (state) =>
   state.clients.showModalClientInfo;
 export const selectClients = (state) => state.clients.clients;
 export const selectIsCreatingClient = (state) => state.clients.isCreating;
 export const selectCreatedClient = (state) => state.clients.created;
 export const selectClient = (state) => state.clients.client;
 export const selectIsLoading = (state) => state.clients.isLoading;
+export const selectLoadingError = (state) => state.clients.loadingErrorMessage;
 export const selectIsUpdatingClient = (state) => state.clients.isUpdatingClient;
 
 export default clientsSlice.reducer;
