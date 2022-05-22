@@ -15,6 +15,8 @@ import {
   Register,
   RegisterClient,
   RegisterDevice,
+  RegisterService,
+  Services,
   Users,
 } from '../pages';
 
@@ -48,6 +50,12 @@ function App() {
             exact
             path="/dispositivos/editar/:deviceId"
             element={<EditDevice />}
+          />
+          <Route exact path="/servicios/:deviceId" element={<Services />} />
+          <Route
+            exact
+            path="/servicios/registrar/:deviceId"
+            element={<RegisterService />}
           />
           <Route path="/not-found" element={<h1>404 Not Found</h1>} />
           <Route path="*" element={<Navigate to="/not-found" replace />} />

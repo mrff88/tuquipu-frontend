@@ -7,6 +7,8 @@ import EditClient from './EditClient';
 import Devices from './Devices';
 import RegisterDevice from './RegisterDevice';
 import EditDevice from './EditDevice';
+import Services from './Services';
+import RegisterService from './RegisterService';
 
 export {
   Login,
@@ -18,4 +20,6 @@ export {
   Devices,
   RegisterDevice,
   EditDevice,
+  Services,
+  RegisterService,
 };
