@@ -18,7 +18,7 @@ import AutoResetForm from '../components/formComponents/AutoResetForm';
 
 const Register = () => {
   const { INITIAL_USER_REGISTER_FORM_STATE } = INITIAL_FORM_STATES;
-  const { USER_REGISGER_FORM_VALIDATION } = FORM_VALIDATION_SCHEMAS;
+  const { USER_REGISTER_FORM_VALIDATION } = FORM_VALIDATION_SCHEMAS;
 
   const dispatch = useDispatch();
   const createdUser = useSelector(selectCreatedUser);
@@ -65,7 +65,7 @@ const Register = () => {
         </Box>
         <Formik
           initialValues={{ ...INITIAL_USER_REGISTER_FORM_STATE }}
-          validationSchema={USER_REGISGER_FORM_VALIDATION}
+          validationSchema={USER_REGISTER_FORM_VALIDATION}
           onSubmit={handleSubmit}
         >
           <Form>

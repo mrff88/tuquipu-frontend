@@ -6,7 +6,15 @@ import {
   NoAuthLayout,
   WithAuthLayout,
 } from '../components/layouts';
-import { Clients, Login, Register, Users } from '../pages';
+import {
+  Clients,
+  Devices,
+  EditClient,
+  Login,
+  Register,
+  RegisterClient,
+  Users,
+} from '../pages';
 
 function App() {
   return (
@@ -15,9 +23,20 @@ function App() {
         <Route element={<WithAuthLayout />}>
           <Route element={<AdminRoutesGuard />}>
             <Route index element={<Users />} />
-            <Route exact path="/usuarios" element={<Users />}></Route>
+            <Route exact path="/usuarios" element={<Users />} />
           </Route>
-          <Route exact path="/clientes" element={<Clients />}></Route>
+          <Route exact path="/clientes" element={<Clients />} />
+          <Route
+            exact
+            path="/clientes/registrar"
+            element={<RegisterClient />}
+          />
+          <Route
+            exact
+            path="/clientes/editar/:clientId"
+            element={<EditClient />}
+          />
+          <Route exact path="/dispositivos/:clientId" element={<Devices />} />
           <Route path="/not-found" element={<h1>404 Not Found</h1>} />
           <Route path="*" element={<Navigate to="/not-found" replace />} />
         </Route>

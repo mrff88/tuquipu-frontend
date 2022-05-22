@@ -1,3 +1,4 @@
+import cloneDeep from 'lodash/cloneDeep';
 import MUIDataTable from 'mui-datatables';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,10 +30,10 @@ const Users = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!allUsers) dispatch(getAllUsersAsync());
-  }, [allUsers, dispatch]);
+    dispatch(getAllUsersAsync());
+  }, [dispatch]);
 
-  const { OPTIONS: options, USER_COLUMNS: columns } = MUI_DATA_TABLE;
+  const { OPTIONS: options, USER_COLUMNS: columns } = cloneDeep(MUI_DATA_TABLE);
 
   const adaptedData = userDataAdapter(allUsers, _id);
 
