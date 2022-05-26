@@ -1,0 +1,68 @@
+[
+  {
+    "_id": {
+      "$oid": "628e610c6caa06382c6d60f0"
+    },
+    "name": "Erick Franco",
+    "lastname": "Del Castillo Deza",
+    "email": "mrff88@gmail.com",
+    "phone": "959701496",
+    "password": "$2b$10$dWwPCx4WmjY1Qt3golRnz.xX/cDnSfgJDaB03mJCgZOi99wWE3Eqe",
+    "userType": "Administrador",
+    "state": "activo",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1652577495149"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1652577495149"
+      }
+    }
+  },
+  {
+    "_id": {
+      "$oid": "628e69626caa06382c6d60fe"
+    },
+    "name": "Josue Nahum",
+    "lastname": "Rampas Carrion",
+    "email": "josue123@gmail.com",
+    "phone": "958288401",
+    "password": "$2b$10$dWwPCx4WmjY1Qt3golRnz.xX/cDnSfgJDaB03mJCgZOi99wWE3Eqe",
+    "userType": "Usuario",
+    "state": "activo",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1652577495149"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1653271331118"
+      }
+    }
+  },
+  {
+    "_id": {
+      "$oid": "628881c176c2e704371b8ae3"
+    },
+    "name": "Fernando Jesus",
+    "lastname": "Bernal Deza",
+    "email": "fer123@gmail.com",
+    "phone": "988728465",
+    "password": "$2b$10$dWwPCx4WmjY1Qt3golRnz.xX/cDnSfgJDaB03mJCgZOi99wWE3Eqe",
+    "userType": "Usuario",
+    "state": "inactivo",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1652577495149"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1653271331118"
+      }
+    }
+  }
+]

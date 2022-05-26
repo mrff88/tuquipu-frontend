@@ -1,0 +1,13 @@
+{
+  "env": {
+    "adminEmail": "mrff88@gmail.com",
+    "adminPassword": "Test123@",
+    "userEmail": "josue123@gmail.com",
+    "userPassword": "Test123@",
+    "inactiveUserEmail": "fer123@gmail.com",
+    "inactiveUseserPassword": "Test123@",
+    "clientEmail": "eliza123@gmail.com",
+    "anotherClientEmail": "bperezc12@gmail.com"
+  },
+  "chromeWebSecurity": false
+}

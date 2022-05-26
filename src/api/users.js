@@ -44,7 +44,7 @@ const getAllUsers = async () => {
 
 const updateUserState = async ({ _id, state }) => {
   const token = JSON.parse(localStorage.getItem('infoUser')).token;
-  const url = `${API_BASE_URL}${USERS.UPDATE}/${_id}`;
+  const url = `${API_BASE_URL}${USERS.UPDATE}${_id}`;
 
   try {
     const response = await axios.put(

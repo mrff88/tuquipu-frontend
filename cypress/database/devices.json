@@ -1,0 +1,24 @@
+[{
+  "_id": {
+    "$oid": "628e6aae6caa06382c6d6138"
+  },
+  "deviceType": "Laptop",
+  "brand": "Lenovo",
+  "model": "Thinkpad T430",
+  "serialNumber": "LNV-V5405",
+  "yearMade": "",
+  "imgUrl": "https://live.staticflickr.com/7150/6809557011_ef054df8c0_b.jpg",
+  "clientId": {
+    "$oid": "628e6a0d6caa06382c6d6114"
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1653059063873"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1653272014554"
+    }
+  }
+}]

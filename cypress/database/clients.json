@@ -1,0 +1,44 @@
+[
+  {
+    "_id": {
+      "$oid": "628e6a0d6caa06382c6d6114"
+    },
+    "name": "Diana",
+    "lastname": "Rojas Calcina",
+    "email": "eliza123@gmail.com",
+    "phone": "987654363",
+    "dni": "14789656",
+    "address": "",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1652978466032"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1652982588669"
+      }
+    }
+  },
+  {
+    "_id": {
+      "$oid": "628f2421a3819e56857d3490"
+    },
+    "name": "Benito",
+    "lastname": "Perez Cuellar",
+    "email": "bperezc12@gmail.com",
+    "phone": "951753654",
+    "dni": "45153654",
+    "address": "",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1653548065128"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1653548065128"
+      }
+    }
+  }
+]

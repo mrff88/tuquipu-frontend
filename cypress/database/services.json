@@ -1,0 +1,22 @@
+[
+  {
+    "_id": {
+      "$oid": "628e6b086caa06382c6d6152"
+    },
+    "serviceType": "Diagnóstico",
+    "state": "Pendiente",
+    "deviceId": {
+      "$oid": "628e6aae6caa06382c6d6138"
+    },
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1653082560443"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1653082802023"
+      }
+    }
+  }
+]
